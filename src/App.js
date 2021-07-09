@@ -1,24 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import JazzyButton from './JazzyButton' 
 
 function App() {
+  const [mode, setMode] = useState('light');
+  const [food, setFood] = useState('pasta');
+
+  const toggleMode = () => {
+    console.log('you toggling??')
+    const newMode = mode === 'light' ? 'dark' : 'light';
+    setMode(newMode);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <section className={`top-section ${mode}`}>
+      <div>
+        <h1>useEffect and Calling APIs</h1>
+      </div>
+      {/* why haven't we passed in id?? */}
+      <JazzyButton
+         mode={mode}
+         onClickCallBack={toggleMode}
+      >
+      </JazzyButton>
+      <div>
+        <h1>I like {food}</h1>
+        <JazzyButton
+          mode={mode}
+          onClickCallBack={() => setFood('Pizza')}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+        </JazzyButton>
+
+      </div>
+    </section>
   );
 }
 
